@@ -1,0 +1,145 @@
+
+Dice Simulation & Central Limit Theorem
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+die_values = np.array([1, 2, 3, 4, 5, 6])
+num_trials = 10000
+
+def simulate_die_average(n):
+    # Simulate rolling the die and calculating the average
+    return np.mean(np.random.choice(die_values, size=(num_trials, n), replace=True), axis=1)
+
+
+sample_sizes = [1, 2, 3, 20]
+
+
+plt.figure(figsize=(12, 8))
+
+
+for size in sample_sizes:
+    average = simulate_die_average(size)
+    plt.hist(average, bins=20, alpha=0.5, label=f'Sample size {size}')
+
+
+plt.title('Central Limit Theorem')
+plt.xlabel('Average of Dice Rolls')
+plt.ylabel('Frequency')
+plt.legend()
+plt.show()
+
+
+
+File Manipulation
+
+import pandas as pd
+
+data = {
+    'name': ['john', 'emma', 'sant', 'lisa', 'tom'],
+    'age': [25, 30, 28, 32, 27],
+    'country': ['usa', 'canada', 'india', 'uk', 'australia'],
+    'salary': [5000, 6000, 7000, 8000, 6500]
+}
+
+df = pd.DataFrame(data)
+
+filtered_df = df[df['country'] == 'usa']
+print("\nFiltered DataFrame (country = 'usa'):")
+print(filtered_df)
+
+sorted_df = df.sort_values(by='salary', ascending=False)
+print("\nSorted DataFrame (by salary in descending order):")
+print(sorted_df)
+
+average_salary = df['salary'].mean()
+print("\nAverage Salary:", average_salary)
+      
+df['experience'] = [3, 6, 4, 8, 5]
+print("\nDataFrame with added experience:")
+print(df)
+
+df.loc[df['name'] == 'emma', 'salary'] = 65000
+print("\nDataFrame after updating Emma's salary:")
+print(df)
+
+df = df.drop('experience', axis=1)
+print("\nDataFrame after deleting  column:")
+print(df)
+
+
+
+GitHub User Repositories
+import requests
+
+def get_repository_info(username):
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        repos = response.json()
+        if repos:
+            
+            first_repo = repos[0]
+            created_at = first_repo['created_at']
+            print(f"Repository '{first_repo['name']}' was created on {created_at}.")
+
+            
+            for repo in repos[:5]:
+                repo_name = repo['name']
+                language = repo.get('language', 'Not specified')
+                print(f'Repository: {repo_name}; Language: {language}')
+        else:
+            print("No repositories found for this user.")
+    else:
+        print(f"Error: Unable to fetch repositories for user '{username}'. Status code: {response.status_code}")
+
+get_repository_info('octocat')
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dataset = pd.read_csv('iris-data.csv')
+
+print(dataset.describe())
+print(dataset.info())
+      
+      
+x = dataset.iloc[0,1,2,3].values
+y = dataset.iloc[:4].values
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
+
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state=0, solver='lbfgs', multi_class='auto')
+
+y_pred = classifier.predict(x_test)
+
+probs = classifier.predict_proba(x_test)
+
+prob_y = np.round(probs_y,2)
+
+res = "{:<10} {:<10} {:<10} {:<13} {:<5}".format("y_test","y_pred" ,Setosa (%)", "Versicolor (%)", "Virginica (%)")
+res += "\n" + "-"*65 + "\n" 
+res += " ".join(values) + "\n"
+print(res)
+                                                                     
+
+import seaborn as sns
+import pandas as pd
+from sklearn.metrics import confusion_matrix
+ax=plt.axes()
+df_cm=cm  
+sns.heatmap(df_cm, annot=True, annot_kws={'size': 16}, fmt='d', cmap='Blues', ax=ax, cbar=True)
+ax.set_title('Confusion Matrix')
+plt.show() 
